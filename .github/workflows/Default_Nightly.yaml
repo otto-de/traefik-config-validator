@@ -1,0 +1,44 @@
+---
+# ATTENTION: This is a generic release workflow and not tied specifically to this repository.
+name: Default_Nightly
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+    inputs: {}
+
+env:
+  GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+  GITHUB_USERNAME: ${{ github.actor }}
+
+jobs:
+  delete_artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kolpav/purge-artifacts-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          expire-in: 7days
+
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v3
+        with:
+          stale-pr-message: >
+            This pull request has been automatically marked as stale because it has not had
+            recent activity. It will be closed in 5 days if no further activity occurs. Thank you
+            for your contributions.
+          days-before-pr-stale: 45
+          days-before-pr-close: 5
+          exempt-pr-labels: 'pinned,security'
+          only-issue-labels: 'pending-response'
+          days-before-issue-stale: 30
+          days-before-issue-close: 7
+          stale-issue-message: >
+            This issue has been automatically marked as stale because it has been open for 30 days
+            with no response from the author. It will be closed in next 7 days if no further
+            activity occurs from the issue author.
+          close-issue-message: >
+            This issue has been closed because it has not received response from the issue author.

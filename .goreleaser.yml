@@ -1,0 +1,25 @@
+builds:
+  - binary: traefik-config-validator
+    main: ./cmd/traefik-config-validator
+    goarch:
+      - amd64
+      - arm64
+    env:
+      - CGO_ENABLED=0
+before:
+  hooks:
+    - go mod download
+archives:
+  - replacements:
+      darwin: Darwin
+      linux: Linux
+      amd64: x86_64
+    files:
+      - none*
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - Merge pull request
+checksum:
+  name_template: 'checksums.txt'
