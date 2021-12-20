@@ -24,7 +24,7 @@ jobs:
   stale:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@v3
+      - uses: actions/stale@v4.1.0
         with:
           stale-pr-message: >
             This pull request has been automatically marked as stale because it has not had
