@@ -1,2 +1,3 @@
 dist/
 cmd/traefik-config-validator/traefik-config-validator
+/traefik-config-validator
