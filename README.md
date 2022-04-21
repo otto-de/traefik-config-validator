@@ -4,9 +4,8 @@
 <img src="https://github.com/traefik/traefik/raw/master/docs/content/assets/img/traefik.logo.png" alt="Traefik" title="Traefik" />
 </p>
 
-**Note** This is currently pre-release software.
-
-`traefik-config-validator` is a CLI tool to (syntactically) validate your [Traefik](https://doc.traefik.io/traefik) configuration files to ensure bad configurations are being captured before hitting your production system or during development. It can be used either as a developer tool on your machine or in CI/CD pipelines.
+`traefik-config-validator` is a CLI tool to (syntactically) validate your [Traefik](https://doc.traefik.io/traefik) configuration files to ensure bad configurations are being captured before hitting your production system or during development.
+It can be used either as a developer tool on your machine or in CI/CD pipelines and has been used in production at OTTO.
 
 It will be validated against the following JSON schemas hosted on schemastore:
 
