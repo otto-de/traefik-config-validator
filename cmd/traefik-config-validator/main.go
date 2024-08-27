@@ -25,7 +25,9 @@ import (
 
 var (
 	configFile                  string
+	configFileSchema            string
 	fileProviderConfigDirectory string
+	fileProviderConfigSchema    string
 
 	versionFlag bool
 	version     = "custom-build"
@@ -38,7 +40,9 @@ func init() {
 
 func main() {
 	flag.StringVar(&configFile, "cfg", "", "traefik config file")
+	flag.StringVar(&configFileSchema, "cfgschema", validation.TraefikJsonSchemaRef, "traefik config file schema")
 	flag.StringVar(&fileProviderConfigDirectory, "cfgdir", "", "traefik file provider directory")
+	flag.StringVar(&fileProviderConfigSchema, "cfgdirschema", validation.TraefikFileProviderJsonSchemaRef, "traefik file provider config schema")
 	flag.BoolVar(&versionFlag, "version", false, "show version and exit")
 
 	flag.Parse()
@@ -50,7 +54,7 @@ func main() {
 
 	if configFile != "" {
 		log.Printf("validating config file %s\n", configFile)
-		if err := validation.ValidateJsonSchema(configFile, validation.TraefikJsonSchemaRef); err != nil {
+		if err := validation.ValidateJsonSchema(configFile, configFileSchema); err != nil {
 			log.Fatal(err)
 		}
 	} else {
@@ -59,7 +63,7 @@ func main() {
 
 	if fileProviderConfigDirectory != "" {
 		log.Printf("validating static file provider configs from directory %s\n", fileProviderConfigDirectory)
-		if err := validation.ValidateFileProviderConfig(fileProviderConfigDirectory); err != nil {
+		if err := validation.ValidateFileProviderConfig(fileProviderConfigDirectory, fileProviderConfigSchema); err != nil {
 			log.Fatal(err)
 		}
 	} else {

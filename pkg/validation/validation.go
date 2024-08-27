@@ -17,7 +17,7 @@ package validation
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"os"
 	"log"
 	"path"
 
@@ -33,14 +33,14 @@ const (
 
 // Validates the file provider configuration by reading a directory and running
 // the validation via JSON Schema.
-func ValidateFileProviderConfig(fileProviderConfigDirectory string) (err error) {
-	items, err := ioutil.ReadDir(fileProviderConfigDirectory)
+func ValidateFileProviderConfig(fileProviderConfigDirectory string, schemaRef string) (err error) {
+	items, err := os.ReadDir(fileProviderConfigDirectory)
 	if err != nil {
 		return
 	}
 	for _, item := range items {
 		if !item.IsDir() {
-			if err = ValidateJsonSchema(path.Join(fileProviderConfigDirectory, item.Name()), TraefikFileProviderJsonSchemaRef); err != nil {
+			if err = ValidateJsonSchema(path.Join(fileProviderConfigDirectory, item.Name()), schemaRef); err != nil {
 				return
 			}
 		}
