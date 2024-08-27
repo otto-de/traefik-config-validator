@@ -1,4 +1,4 @@
-// Copyright (c) 2022 OTTO GmbH & Co KG
+// Copyright (c) 2024 OTTO GmbH & Co KG
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,14 +15,14 @@
 package utils
 
 import (
-	"io/ioutil"
+	"os"
 
 	"github.com/ghodss/yaml"
 )
 
 // Reads a YAML file and converts it to JSON blob
 func ReadYamlFileAsJson(filename string) ([]byte, error) {
-	content, err := ioutil.ReadFile(filename)
+	content, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}

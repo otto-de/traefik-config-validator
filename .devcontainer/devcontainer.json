@@ -6,13 +6,18 @@
 	"image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm",
 	"features": {
 		"ghcr.io/eitsupi/devcontainer-features/jq-likes:2": {
-			"jqVersion": "latest",
+			"jqVersion": "os-provided",
 			"yqVersion": "latest",
 			"gojqVersion": "latest",
 			"xqVersion": "latest",
 			"jaqVersion": "latest"
 		},
-		"ghcr.io/jungaretti/features/make:1": {}
+		"ghcr.io/jungaretti/features/make:1": {},
+		"ghcr.io/devcontainers/features/python:1": {
+			"installTools": true,
+			"version": "os-provided"
+		},
+		"ghcr.io/prulloac/devcontainer-features/pre-commit:1": {}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
