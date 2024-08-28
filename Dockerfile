@@ -1,4 +1,4 @@
-FROM golang:1.17 as builder
+FROM golang:1.23 AS builder
 
 WORKDIR /opt/
 
@@ -8,9 +8,9 @@ RUN go mod download
 COPY . ./
 RUN go test -cover ./...
 
-ENV GOOS linux
+ENV GOOS=linux
 ARG GOARCH
-ENV GOARCH ${GOARCH:-amd64}
+ENV GOARCH=${GOARCH:-amd64}
 ENV CGO_ENABLED=0
 
 ARG VERSION
