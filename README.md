@@ -1,5 +1,7 @@
 # Traefik Config Validator
 
+![OSS Lifecycle](https://img.shields.io/osslifecycle?file_url=https%3A%2F%2Fraw.githubusercontent.com%2Fotto-de%2Ftraefik-config-validator%2Frefs%2Fheads%2Fmain%2FOSSMETADATA)
+
 <p align="center">
 <img src="https://github.com/traefik/traefik/raw/master/docs/content/assets/img/traefik.logo.png" alt="Traefik" title="Traefik" />
 </p>
